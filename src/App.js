@@ -4,17 +4,53 @@ import "./style.scss";
 
 const App = () => {
   const [promptText, setPromptText] = useState("");
+  const [image, setImage] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(promptText);
+    if (!promptText.trim()) {
+      return;
+    }
+
+    setLoading(true);
+    setImage(null);
+
+    try {
+      const response = await fetch("http://localhost:5000/api/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          prompt: promptText,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Something went wrong");
+      }
+
+      setImage(data.image);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div className="app">
       <h1 className="title">Image Generator</h1>
-      <div className="stage"></div>
+      <div className="stage">
+        {loading && <p>Generating image...</p>}
+        {image && (
+          <img src={`data:image/png;base64,${image}`} alt={promptText} />
+        )}
+      </div>
       <textarea
         className="prompt"
         onChange={(e) => setPromptText(e.target.value)}
