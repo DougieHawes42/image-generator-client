@@ -18,15 +18,18 @@ const App = () => {
     setImage(null);
 
     try {
-      const response = await fetch("http://localhost:5000/api/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/api/submit`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            prompt: promptText,
+          }),
         },
-        body: JSON.stringify({
-          prompt: promptText,
-        }),
-      });
+      );
 
       const data = await response.json();
 
