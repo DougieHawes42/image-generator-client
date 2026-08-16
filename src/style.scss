@@ -25,7 +25,10 @@
   }
   .stage,
   .prompt,
-  .submit {
+  .selector,
+  .submit,
+  .download,
+  .reset {
     margin: 7px auto;
     width: 400px;
   }
@@ -43,12 +46,26 @@
     background-color: #2a2a2a;
     height: 150px;
   }
+  .selector {
+    color: #2a2a2a;
+    * {
+      color: #2a2a2a;
+    }
+  }
   .submit {
     background-color: #06b6d4;
     border: none;
     cursor: pointer;
     font-family: "bebas neue";
     font-size: 21px;
+    padding: 7px;
+  }
+  .download,
+  .reset {
+    background-color: #2a2a2a;
+    border: 2px solid #06b6d4;
+    color: #f9fafb;
+    font-family: "bebas neue";
     padding: 7px;
   }
 }
