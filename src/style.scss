@@ -1,71 +1,51 @@
-@font-face {
-  font-family: "bebas neue";
-  src: url("./fonts/BebasNeue-Regular.ttf");
-}
+@import "./variables.scss";
 
 * {
   box-sizing: border-box;
-  color: #f9fafb;
+  color: $colour1;
+  font-family: $font2;
   font-size: 14px;
   margin: 0;
   outline: none;
   text-decoration: none;
+  user-select: none;
 }
 
 .app {
-  background-color: #121212;
+  background-color: $colour2;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   padding: 14px 2%;
   .title {
-    font-family: "bebas neue";
+    font-family: $font1;
     font-size: 42px;
     text-align: center;
   }
-  .stage,
-  .prompt,
-  .selector,
-  .submit,
-  .download,
-  .reset {
-    margin: 7px auto;
-    width: 400px;
+  .file-inputs-container {
+    left: 2%;
+    margin-top: 55px;
+    position: absolute;
   }
-  .stage,
-  .prompt {
-    border: 2px solid #6366f1;
-  }
-  .stage {
-    height: 400px;
-    img {
-      width: 400px;
+  .prompt-options-prompt-container {
+    margin: 0 auto;
+    max-width: 600px;
+    min-width: 300px;
+    width: 100%;
+    .prompt-options-selectors {
+      display: grid;
+      grid-gap: 7px;
+      grid-template-columns: repeat(3, 1fr);
     }
   }
-  .prompt {
-    background-color: #2a2a2a;
-    height: 150px;
-  }
-  .selector {
-    color: #2a2a2a;
-    * {
-      color: #2a2a2a;
+  .gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    .gallery-item {
+      cursor: pointer;
+      margin: 7px;
+      width: 150px;
     }
-  }
-  .submit {
-    background-color: #06b6d4;
-    border: none;
-    cursor: pointer;
-    font-family: "bebas neue";
-    font-size: 21px;
-    padding: 7px;
-  }
-  .download,
-  .reset {
-    background-color: #2a2a2a;
-    border: 2px solid #06b6d4;
-    color: #f9fafb;
-    font-family: "bebas neue";
-    padding: 7px;
   }
 }
