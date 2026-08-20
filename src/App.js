@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import helpers from "./helpers/index.js";
 
 import "./style.scss";
@@ -5,15 +7,22 @@ import "./style.scss";
 import Error from "./components/layout/Error.js";
 import Loading from "./components/layout/Loading.js";
 
-import { SubmitButton, ToggleButton } from "./components/utils/buttons.js";
+import {
+  SubmitButton,
+  ToggleButton,
+  OptionButton,
+} from "./components/utils/buttons.js";
 import {
   ImageUpload,
   PromptText,
   PromptOptionsSelector,
 } from "./components/utils/inputs.js";
 import { ImageModal } from "./components/utils/modals.js";
+import { AvatarCreator } from "./components/utils/edit-options.js";
 
 const App = () => {
+  const [showEditOptions, setShowEditOptions] = useState(false);
+
   const {
     promptText,
     setPromptText,
@@ -41,6 +50,14 @@ const App = () => {
     setEditPrompt,
     showImageUpload,
     setShowImageUpload,
+    showAvatarCreator,
+    setShowAvatarCreator,
+
+    avatarInitialImageFile,
+    avatarInitialImagePreview,
+    handleAvatarInitialImageChange,
+
+    handleAvatarSubmit,
     handleReset,
     handleSubmit,
     handleDownload,
@@ -50,34 +67,8 @@ const App = () => {
 
   return (
     <div className="app">
-      <h1 className="title">Image Generator</h1>
-      <div className="file-inputs-container">
-        {!showImageUpload ? (
-          <ToggleButton
-            onClick={() => setShowImageUpload(true)}
-            text="enter images"
-          />
-        ) : (
-          <>
-            <ImageUpload
-              displayImage={initialImagePreview}
-              label="Enter Initial Image"
-              fileName="initialImage"
-              onChange={handleInitialImageChange}
-            />
-            <ImageUpload
-              // displayImage={initialImagePreview}
-              label="Enter Example Image"
-              fileName="exampleImage"
-            />
-            <ToggleButton
-              onClick={() => setShowImageUpload(false)}
-              text="close"
-            />
-          </>
-        )}
-      </div>
-      <div className="prompt-options-prompt-container">
+      <h1 className="title">Klimpt-E</h1>
+      <div className="prompt-dashboard">
         <PromptText
           value={promptText}
           onChange={(e) => setPromptText(e.target.value)}
@@ -87,6 +78,7 @@ const App = () => {
           <PromptOptionsSelector
             value={size}
             onChange={(e) => setSize(e.target.value)}
+            label="size"
             items={[
               { key: 1, value: "1024x1024", text: "square" },
               { key: 2, value: "1536x1536", text: "landscape" },
@@ -96,6 +88,7 @@ const App = () => {
           <PromptOptionsSelector
             value={quality}
             onChange={(e) => setQuality(e.target.value)}
+            label="quality"
             items={[
               { key: 1, value: "low", text: "low" },
               { key: 2, value: "medium", text: "medium" },
@@ -105,6 +98,7 @@ const App = () => {
           <PromptOptionsSelector
             value={quantity}
             onChange={(e) => setQuantity(e.target.value)}
+            label="quantity"
             items={[
               { key: 1, value: 1, text: 1 },
               { key: 2, value: 2, text: 2 },
@@ -114,11 +108,41 @@ const App = () => {
             ]}
           />
         </div>
+        <ToggleButton
+          onClick={() => setShowEditOptions(!showEditOptions)}
+          text={showEditOptions ? "close menu" : "image edit menu"}
+        />
+        <div className="edit-options-container">
+          {showEditOptions && (
+            <div className="edit-options">
+              <OptionButton
+                text="fantasy avatar creator"
+                onClick={() => setShowAvatarCreator(true)}
+              />
+              <OptionButton text="merge two images" />
+            </div>
+          )}
+        </div>
         <SubmitButton onClick={handleSubmit} text="submit" />
+        <SubmitButton onClick={handleAvatarSubmit} text="create avatar" />
+        {initialImageFile && (
+          <div className="preview-image-container">
+            <label className="preview-image-label">initial file</label>
+            <img className="preview-image" src={initialImagePreview} alt="" />
+          </div>
+        )}
+        {avatarInitialImageFile && (
+          <div className="preview-image-container">
+            <label className="preview-image-label">initial file</label>
+            <img
+              className="preview-image"
+              src={avatarInitialImagePreview}
+              alt=""
+            />
+          </div>
+        )}
         {promptText.length > 0 && (
-          <button className="toggle-button" onClick={handleReset}>
-            RESET
-          </button>
+          <ToggleButton onClick={handleReset} text="reset" />
         )}
       </div>
       {loading && <Loading qty={quantity} />}
@@ -147,6 +171,14 @@ const App = () => {
           scrollRight={() => handleImageScroll("right")}
           clickDownload={handleDownload}
           clickClose={() => setSelectedImage(null)}
+        />
+      )}
+      {showAvatarCreator && (
+        <AvatarCreator
+          displayImage={avatarInitialImagePreview}
+          fileName="avatarInitialImage"
+          onChange={handleAvatarInitialImageChange}
+          onClick={() => setShowAvatarCreator(false)}
         />
       )}
     </div>

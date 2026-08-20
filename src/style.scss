@@ -1,5 +1,17 @@
 @import "./variables.scss";
 
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-thumb {
+  background: $colour4;
+
+  transition: 0.3s ease-in-out background;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: $colour5;
+}
+
 * {
   box-sizing: border-box;
   color: $colour1;
@@ -22,20 +34,35 @@
     font-size: 42px;
     text-align: center;
   }
-  .file-inputs-container {
-    left: 2%;
-    margin-top: 55px;
-    position: absolute;
-  }
-  .prompt-options-prompt-container {
+  .prompt-dashboard {
     margin: 0 auto;
-    max-width: 600px;
-    min-width: 300px;
+    max-width: 900px;
     width: 100%;
     .prompt-options-selectors {
       display: grid;
       grid-gap: 7px;
       grid-template-columns: repeat(3, 1fr);
+      margin-bottom: 7px;
+    }
+    .edit-options-container {
+      max-height: 140px;
+      min-height: 140px;
+      .edit-options {
+        max-height: 140px;
+        min-height: 140px;
+        overflow-y: scroll;
+      }
+    }
+    .preview-image-container {
+      display: flex;
+      flex-direction: column;
+      margin-top: 7px;
+      .preview-image-label {
+        font-family: $font1;
+      }
+      .preview-image {
+        width: 140px;
+      }
     }
   }
   .gallery {

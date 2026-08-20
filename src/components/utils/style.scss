@@ -54,14 +54,46 @@
   }
 }
 
+.edit-modal-container {
+  left: 0;
+  min-height: 100vh;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  .edit-modal {
+    background-color: $colour2;
+    border: 2px solid $colour5;
+    left: 50%;
+    max-width: 900px;
+    min-height: 300px;
+    padding: 7px;
+    position: absolute;
+    transform: translateX(-50%);
+    top: 69px;
+    width: 100%;
+    .edit-modal-images {
+      display: flex;
+      justify-content: center;
+    }
+  }
+  .edit-modal-footer {
+    .edit-modal-footer-text {
+      text-align: center;
+    }
+  }
+}
+
 .image-upload {
   display: grid;
   grid-template-columns: 1fr;
+  justify-content: space-around;
   margin-bottom: 7px;
   max-width: 300px;
+  min-width: 300px;
   .image-display-container {
     border: 2px solid $colour4;
     .image-display {
+      display: block;
       width: 100%;
     }
   }
@@ -92,23 +124,34 @@
 }
 
 .prompt-text {
-  aspect-ratio: 3 / 2;
+  aspect-ratio: 3 / 1;
   background-color: $colour2;
   border: 2px solid $colour4;
   height: auto;
+  min-height: 200px;
   padding: 7px;
   width: 100%;
 }
 
-.prompt-options-selector {
-  background-color: $colour2;
-  border: 2px solid $colour3;
-  color: $colour1;
-  cursor: pointer;
-  padding: 7px;
-  text-align: center;
-  * {
+.prompt-options-selector-container {
+  display: flex;
+  flex-direction: column;
+  .prompt-options-selector-label {
+    color: $colour5;
+    font-family: $font1;
+    font-size: 21px;
+    text-align: center;
+  }
+  .prompt-options-selector {
+    background-color: $colour2;
+    border: 2px solid $colour4;
+    color: $colour1;
     cursor: pointer;
+    padding: 7px;
+    text-align: center;
+    * {
+      cursor: pointer;
+    }
   }
 }
 
@@ -128,9 +171,7 @@
 }
 
 .toggle-button {
-  background-color: rgba(0, 0, 0, 0);
-  border: none;
-  color: $colour4;
+  color: $colour5;
   cursor: pointer;
   font-family: $font1;
   font-size: 18px;
@@ -138,5 +179,18 @@
   transition: 0.3s ease-in-out color;
 }
 .toggle-button:hover {
-  color: $colour5;
+  color: $colour4;
+}
+
+.option-button {
+  border-bottom: 2px solid $colour3;
+  cursor: pointer;
+  font-family: $font1;
+  font-size: 18px;
+  padding-top: 7px;
+
+  transition: 0.3s ease-in-out color;
+}
+.option-button:hover {
+  color: $colour4;
 }

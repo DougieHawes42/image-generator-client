@@ -1,12 +1,14 @@
 import { useState } from "react";
 
 const controllers = () => {
-  const [promptText, setPromptText] = useState("");
+  const [promptText, setPromptText] = useState(
+    "Turn me into a Hans Gruber from Die Hard. complete with walkie talkie and gun",
+  );
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [size, setSize] = useState("1024x1024");
-  const [quality, setQuality] = useState("high");
+  const [quality, setQuality] = useState("low");
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedIndex, setSelectedIndex] = useState(null);
@@ -14,6 +16,75 @@ const controllers = () => {
   const [initialImagePreview, setInitialImagePreview] = useState(null);
   const [editPrompt, setEditPrompt] = useState("");
   const [showImageUpload, setShowImageUpload] = useState(false);
+  const [showAvatarCreator, setShowAvatarCreator] = useState(false);
+  const [avatarInitialImageFile, setAvatarInitialImageFile] = useState(null);
+  const [avatarInitialImagePreview, setAvatarInitialImagePreview] =
+    useState(null);
+
+  const handleAvatarInitialImageChange = (e) => {
+    const file = e.target.files[0];
+
+    if (!file) return;
+
+    setAvatarInitialImageFile(file);
+
+    setAvatarInitialImagePreview(URL.createObjectURL(file));
+  };
+
+  const handleAvatarSubmit = async (req, res) => {
+    if (!avatarInitialImageFile) {
+      setError("Please select an image.");
+      return;
+    }
+
+    if (!promptText.trim()) {
+      setError("Please provide a prompt.");
+      return;
+    }
+
+    try {
+      setLoading(true);
+      setError(null);
+
+      const formData = new FormData();
+
+      formData.append("image", avatarInitialImageFile);
+
+      formData.append("prompt", promptText);
+
+      formData.append("size", size);
+
+      formData.append("quality", quality);
+
+      formData.append("quantity", String(quantity));
+
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/api/image/avatar`,
+        {
+          method: "POST",
+          body: formData,
+        },
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to generate avatar.");
+      }
+
+      setImages((previousImages) => [...previousImages, ...data.images]);
+    } catch (error) {
+      console.error("AVATAR ERROR:");
+      console.error(error);
+
+      res.status(500).json({
+        error:
+          error?.message || "Something went wrong while generating the avatar.",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleReset = () => {
     setPromptText("");
@@ -88,7 +159,7 @@ const controllers = () => {
 
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API_URL}/api/edit`,
+        `${process.env.REACT_APP_API_URL}/api/image/avatar`,
         {
           method: "POST",
           headers: {
@@ -203,6 +274,17 @@ const controllers = () => {
 
     showImageUpload,
     setShowImageUpload,
+
+    showAvatarCreator,
+    setShowAvatarCreator,
+
+    avatarInitialImageFile,
+    avatarInitialImagePreview,
+    handleAvatarInitialImageChange,
+
+    handleAvatarSubmit,
+
+    handleAvatarSubmit,
 
     handleReset,
 

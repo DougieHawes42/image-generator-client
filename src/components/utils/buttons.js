@@ -7,7 +7,13 @@ export const SubmitButton = ({ onClick, text }) => (
 );
 
 export const ToggleButton = ({ onClick, text }) => (
-  <button className="toggle-button" onClick={onClick}>
+  <div className="toggle-button" onClick={onClick}>
     {text}
-  </button>
+  </div>
+);
+
+export const OptionButton = ({ onClick, text }) => (
+  <div className="option-button" onClick={onClick}>
+    {text}
+  </div>
 );
