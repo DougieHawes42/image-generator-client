@@ -1,9 +1,6 @@
 // dependencies
 import { useState } from "react";
 
-// controllers
-import controllers from "../../controllers/index.js";
-
 // styles
 import "./style.scss";
 
@@ -11,8 +8,8 @@ import "./style.scss";
 // utils
 import { GenerateRoute } from "../utils/routes.js";
 
-const TextToImage = () => {
-  const { promptText, setPromptText, handleTextToImageSubmit } = controllers();
+const TextToImage = ({ controller }) => {
+  const { promptText, setPromptText, handleTextToImageSubmit } = controller;
 
   return (
     <GenerateRoute

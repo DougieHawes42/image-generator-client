@@ -22,27 +22,13 @@ import ImagesToBlendedImage from "./components/routes/ImagesToBlendedImage.js";
 import ImageToVideo from "./components/routes/ImageToVideo.js";
 
 const App = () => {
-  const { loading, showModal, setShowModal, images, setImages } = controllers();
-
-  useEffect(() => {
-    // Save images to localStorage whenever they change
-    // localStorage.setItem("images", JSON.stringify(images));
-    // console.log("GALLERY IMAGES:", images);
-  }, [images]);
-
-  useEffect(() => {
-    // Load images from localStorage on component mount
-    const savedImages = localStorage.getItem("images");
-    if (savedImages) {
-      setImages(JSON.parse(savedImages));
-    }
-  }, []);
+  const controller = controllers();
 
   return (
     <div className="app">
       <Header />
       <Routes>
-        <Route path="/" element={<TextToImage />} />
+        <Route path="/" element={<TextToImage controller={controller} />} />
         <Route path="/images-to-image" element={<ImagesToImage />} />
         <Route
           path="/images-to-blended-image"
@@ -50,10 +36,12 @@ const App = () => {
         />
         <Route path="/image-to-video" element={<ImageToVideo />} />
       </Routes>
-      <Gallery images={images} />
+      <Gallery images={controller.images} />
       <Navbar />
-      {loading && <Loading />}
-      {showModal && <ImageModal onClose={() => setShowModal(false)} />}
+      {controller.loading && <Loading />}
+      {controller.showModal && (
+        <ImageModal onClose={() => setShowModal(false)} />
+      )}
     </div>
   );
 };

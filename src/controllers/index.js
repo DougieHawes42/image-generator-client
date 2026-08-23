@@ -7,11 +7,7 @@ const controllers = () => {
     "A night-time scene in Cambridge UK, with the River Cam reflecting the lights of the city, and the historic architecture of King's College Chapel in the background, under a starry sky. The scene is illuminated by warm streetlights, creating a cozy and inviting atmosphere. The river is calm, with gentle ripples reflecting the lights and buildings. The sky is clear, showcasing a beautiful array of stars, adding to the magical ambiance of the scene.",
   );
 
-  const [images, setImages] = useState(() => {
-    const savedImages = localStorage.getItem("images");
-
-    return savedImages ? JSON.parse(savedImages) : [];
-  });
+  const [images, setImages] = useState([]);
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -27,7 +23,6 @@ const controllers = () => {
 
     setLoading(true);
     setError("");
-    setImages([]);
 
     try {
       const response = await axios.post(
@@ -41,21 +36,9 @@ const controllers = () => {
 
       const newImages = response.data.images;
 
-      // setImages((previousImages) => [...previousImages, ...newImages]);
-
-      setImages((previousImages) => {
-        console.log("PREVIOUS:", previousImages);
-        console.log("NEW FROM API:", newImages);
-
-        const updatedImages = [...previousImages, ...newImages];
-
-        console.log("SETTING:", updatedImages);
-
-        return updatedImages;
-      });
+      setImages((previousImages) => [...previousImages, ...newImages]);
     } catch (error) {
       console.error(error);
-      setImages([]);
       setError(error.message);
     } finally {
       setLoading(false);
