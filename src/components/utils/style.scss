@@ -23,12 +23,16 @@
   }
   .generate-route-inputs {
     width: 100%;
-  }
-  .generate-route-options-selectors {
-    display: grid;
-    grid-gap: 7px;
-    grid-template-columns: 1fr 1fr 1fr;
-    width: 100%;
+    .generate-route-image-upload-container {
+      margin-bottom: 7px;
+      min-height: 140px;
+    }
+    .generate-route-options-selectors {
+      display: grid;
+      grid-gap: 7px;
+      grid-template-columns: 1fr 1fr 1fr;
+      width: 100%;
+    }
   }
   .generate-route-submit-container {
     width: 100%;
