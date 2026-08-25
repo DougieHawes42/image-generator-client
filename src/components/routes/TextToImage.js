@@ -1,6 +1,3 @@
-// dependencies
-import { useState } from "react";
-
 // styles
 import "./style.scss";
 
@@ -9,7 +6,17 @@ import "./style.scss";
 import { GenerateRoute } from "../utils/routes.js";
 
 const TextToImage = ({ controller }) => {
-  const { promptText, setPromptText, handleTextToImageSubmit } = controller;
+  const {
+    promptText,
+    setPromptText,
+    handleTextToImageSubmit,
+    size,
+    setSize,
+    quality,
+    setQuality,
+    quantity,
+    setQuantity,
+  } = controller;
 
   return (
     <GenerateRoute
@@ -23,6 +30,12 @@ const TextToImage = ({ controller }) => {
       resetVisible={promptText.length > 0}
       onClickReset={() => setPromptText("")}
       onSubmit={handleTextToImageSubmit}
+      size={size}
+      setSize={setSize}
+      quality={quality}
+      setQuality={setQuality}
+      quantity={quantity}
+      setQuantity={setQuantity}
     />
   );
 };

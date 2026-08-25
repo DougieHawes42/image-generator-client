@@ -24,6 +24,12 @@
   .generate-route-inputs {
     width: 100%;
   }
+  .generate-route-options-selectors {
+    display: grid;
+    grid-gap: 7px;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 100%;
+  }
   .generate-route-submit-container {
     width: 100%;
     .generate-route-reset-button {
@@ -50,6 +56,27 @@
   padding: 7px;
   text-align: left;
   width: 100%;
+}
+
+.prompt-options-selector-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 7px;
+  width: 100%;
+  .prompt-options-selector-label {
+    color: $colour1;
+    font-family: $font1;
+    font-size: 14px;
+  }
+  .prompt-options-selector {
+    background-color: $colour3;
+    border: 2px solid $colour4;
+    color: $colour1;
+    font-size: 18px;
+    padding: 7px;
+    text-align: left;
+    width: 100%;
+  }
 }
 
 .nav-link {

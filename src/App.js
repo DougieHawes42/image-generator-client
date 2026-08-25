@@ -36,12 +36,10 @@ const App = () => {
         />
         <Route path="/image-to-video" element={<ImageToVideo />} />
       </Routes>
-      <Gallery images={controller.images} />
+      <Gallery controller={controller} />
       <Navbar />
       {controller.loading && <Loading />}
-      {controller.showModal && (
-        <ImageModal onClose={() => setShowModal(false)} />
-      )}
+      {controller.showModal && <ImageModal controller={controller} />}
     </div>
   );
 };

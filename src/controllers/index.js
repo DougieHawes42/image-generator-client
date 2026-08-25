@@ -3,9 +3,10 @@ import { useState } from "react";
 import axios from "axios";
 
 const controllers = () => {
-  const [promptText, setPromptText] = useState(
-    "A night-time scene in Cambridge UK, with the River Cam reflecting the lights of the city, and the historic architecture of King's College Chapel in the background, under a starry sky. The scene is illuminated by warm streetlights, creating a cozy and inviting atmosphere. The river is calm, with gentle ripples reflecting the lights and buildings. The sky is clear, showcasing a beautiful array of stars, adding to the magical ambiance of the scene.",
-  );
+  const [promptText, setPromptText] = useState("");
+  const [size, setSize] = useState("1024x1024");
+  const [quality, setQuality] = useState("low");
+  const [quantity, setQuantity] = useState(4);
 
   const [images, setImages] = useState([]);
 
@@ -13,6 +14,7 @@ const controllers = () => {
   const [error, setError] = useState(null);
 
   const [showModal, setShowModal] = useState(false);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(null);
 
   const handleTextToImageSubmit = async (e) => {
     e.preventDefault();
@@ -29,7 +31,9 @@ const controllers = () => {
         `${process.env.REACT_APP_API_URL}/api/image/submit`,
         {
           prompt: promptText,
-          size: "1024x1024",
+          size,
+          quality,
+          quantity,
           moderation: "low",
         },
       );
@@ -60,8 +64,16 @@ const controllers = () => {
 
     promptText,
     setPromptText,
+    size,
+    setSize,
+    quality,
+    setQuality,
+    quantity,
+    setQuantity,
 
     handleTextToImageSubmit,
+    selectedImageIndex,
+    setSelectedImageIndex,
   };
 };
 

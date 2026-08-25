@@ -10,7 +10,7 @@ import "./style.scss";
 // media
 import loadingImage from "../../media/loading.svg";
 
-export const GalleryImage = ({ src, alt }) => {
+export const GalleryImage = ({ onClick, src, alt }) => {
   const [liked, setLiked] = useState(false);
 
   return (
@@ -20,7 +20,7 @@ export const GalleryImage = ({ src, alt }) => {
         src={`data:image/png;base64,${src}`}
         alt={alt}
       />
-      <div className="gallery-image-buttons">
+      <div className="gallery-image-buttons" onClick={onClick}>
         <div
           className={`gallery-image-like ${liked ? "liked" : ""}`}
           onClick={() => {

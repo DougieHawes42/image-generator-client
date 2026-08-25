@@ -126,36 +126,73 @@
     @include flex-center;
     background-color: $colour2;
     border: 2px solid $colour5;
-    margin-top: 70px;
+    margin-top: 80px;
     max-width: 420px;
     min-width: 330px;
     padding: 7px;
     width: 100%;
     .image-modal-image-container {
-      aspect-ratio: 1/1;
       border: 2px solid $colour4;
       margin-bottom: 7px;
-      opacity: 0;
+      position: relative;
       width: 100%;
-
-      transition: opacity 0.3s ease;
-      .image-modal-chevrons {
-        height: 100%;
+      .image-modal-image {
+        display: block;
         width: 100%;
-        display: flex;
-        justify-content: space-between;
-        .image-modal-chevron {
+        height: auto;
+      }
+      .image-modal-buttons {
+        height: 100%;
+        left: 0;
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+
+        transition: opacity 0.3s ease;
+
+        &:hover {
+          opacity: 1;
+        }
+        .image-modal-button {
           color: $colour1;
           cursor: pointer;
           font-size: 35px;
-          margin-top: 50%;
+          opacity: 0.3;
           text-align: center;
-          transform: translateY(-50%);
 
           transition: color 0.3s ease;
+
           &:hover {
-            color: $colour5;
+            color: $colour4;
           }
+        }
+        .image-modal-button.delete,
+        .image-modal-button.like,
+        .image-modal-button.download,
+        .image-modal-button.close,
+        .image-modal-button.left,
+        .image-modal-button.right {
+          position: absolute;
+          top: 7px;
+        }
+        .image-modal-button.delete {
+          left: 7px;
+        }
+        .image-modal-button.like {
+          left: 120px;
+        }
+        .image-modal-button.download {
+          right: 120px;
+        }
+        .image-modal-button.close {
+          right: 7px;
+        }
+        .image-modal-button.left {
+          left: 70px;
+        }
+        .image-modal-button.right {
+          right: 70px;
         }
       }
     }
