@@ -22,12 +22,6 @@ const ImageModal = ({ controller }) => {
           />
           <div className="image-modal-buttons">
             <RiDeleteBin6Line className="image-modal-button delete" />
-            <CiHeart className="image-modal-button like" />
-            <MdOutlineFileDownload className="image-modal-button download" />
-            <FaTimes
-              className="image-modal-button close"
-              onClick={() => controller.setShowModal(false)}
-            />
             <FaChevronLeft
               className="image-modal-button left"
               onClick={() =>
@@ -39,6 +33,11 @@ const ImageModal = ({ controller }) => {
                 )
               }
             />
+            <CiHeart className="image-modal-button like" />
+            <MdOutlineFileDownload
+              className="image-modal-button download"
+              onClick={() => controller.handleDownload()}
+            />
             <FaChevronRight
               className="image-modal-button right"
               onClick={() =>
@@ -47,6 +46,10 @@ const ImageModal = ({ controller }) => {
                     controller.images.length,
                 )
               }
+            />
+            <FaTimes
+              className="image-modal-button close"
+              onClick={() => controller.setShowModal(false)}
             />
           </div>
         </div>

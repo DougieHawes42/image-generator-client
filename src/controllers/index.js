@@ -61,6 +61,21 @@ const controllers = () => {
     }
   };
 
+  const handleDownload = () => {
+    if (selectedImageIndex === null) return;
+
+    const image = images[selectedImageIndex];
+
+    const link = document.createElement("a");
+
+    link.href = `data:image/png;base64,${image}`;
+    link.download = "generated-image.png";
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const handleImagesToImageSubmit = async (e) => {
     e.preventDefault();
 
@@ -73,8 +88,6 @@ const controllers = () => {
       setError("Please provide a prompt.");
       return;
     }
-
-    console.log("Submitting images to image with prompt:", promptText);
 
     try {
       setLoading(true);
@@ -90,21 +103,6 @@ const controllers = () => {
       formData.append("size", size);
       formData.append("quality", quality);
       formData.append("quantity", String(quantity));
-
-      console.log("IMAGES TO SEND:", imagesToImageFiles);
-
-      imagesToImageFiles.forEach((image, index) => {
-        console.log(
-          `IMAGE ${index}:`,
-          image,
-          "is File:",
-          image instanceof File,
-          "name:",
-          image?.name,
-          "type:",
-          image?.type,
-        );
-      });
 
       const response = await axios.post(
         `${process.env.REACT_APP_API_URL}/api/image/images-to-image`,
@@ -150,6 +148,8 @@ const controllers = () => {
     setQuality,
     quantity,
     setQuantity,
+
+    handleDownload,
 
     handleImagesToImageChange,
 
