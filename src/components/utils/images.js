@@ -45,3 +45,12 @@ export const GalleryImageLoading = () => (
     <p className="gallery-loader-text">loading...</p>
   </div>
 );
+
+export const ExampleImage = ({ file, index }) => (
+  <img
+    className="example-image"
+    key={`${file.name}-${index}`}
+    src={URL.createObjectURL(file)}
+    alt={`Selected reference ${index + 1}`}
+  />
+);

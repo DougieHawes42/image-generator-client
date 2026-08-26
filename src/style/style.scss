@@ -10,6 +10,20 @@
   user-select: none;
 }
 
+::-webkit-scrollbar {
+  height: 7px;
+  width: 7px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+::-webkit-scrollbar-thumb {
+  background: $colour4;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: $colour5;
+}
+
 h1,
 h2,
 h3,

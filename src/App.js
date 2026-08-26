@@ -29,7 +29,10 @@ const App = () => {
       <Header />
       <Routes>
         <Route path="/" element={<TextToImage controller={controller} />} />
-        <Route path="/images-to-image" element={<ImagesToImage />} />
+        <Route
+          path="/images-to-image"
+          element={<ImagesToImage controller={controller} />}
+        />
         <Route
           path="/images-to-blended-image"
           element={<ImagesToBlendedImage />}

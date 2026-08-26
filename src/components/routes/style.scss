@@ -1,16 +1,50 @@
 @import "../../style/variables.scss";
 
 .images-to-image-image-upload {
-  min-height: 140px;
+  min-height: 160px;
   .images-to-image-image-upload-label {
     color: $colour1;
     font-family: $font1;
     font-size: 21px;
   }
-  .images-to-image-image-upload-input {
-    border: 1px solid $colour4;
-    padding: 10px 0;
-    width: 80px;
+  .images-to-image-image-upload-container {
+    display: grid;
+    grid-gap: 7px;
+    grid-template-columns: 80px 1fr;
     min-height: 120px;
+    .images-to-image-image-upload-input {
+      border: 2px solid $colour4;
+      cursor: pointer;
+      width: 80px;
+      max-height: 120px;
+      min-height: 120px;
+      label {
+        * {
+          color: $colour3;
+          cursor: pointer;
+          font-size: 28px;
+          margin-top: 42px;
+
+          transition: color 0.3s ease-in-out;
+        }
+      }
+      input {
+        display: none;
+      }
+
+      &:hover {
+        label {
+          * {
+            color: $colour5;
+          }
+        }
+      }
+    }
+    .images-to-image-images-preview {
+      display: flex;
+      justify-content: flex-start;
+      overflow-x: scroll;
+      padding-bottom: 7px;
+    }
   }
 }
