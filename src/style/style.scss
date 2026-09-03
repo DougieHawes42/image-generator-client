@@ -10,6 +10,10 @@
   user-select: none;
 }
 
+body {
+  background-color: black;
+}
+
 ::-webkit-scrollbar {
   height: 7px;
   width: 7px;
@@ -34,7 +38,6 @@ h6 {
 }
 
 .app {
-  background-attachment: fixed;
   background-image: url("../media/background.jpg");
   background-position: center;
   background-size: cover;

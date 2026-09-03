@@ -1,7 +1,6 @@
 @import "../../style/variables.scss";
 
 .images-to-image-image-upload {
-  min-height: 160px;
   .images-to-image-image-upload-label {
     color: $colour1;
     font-family: $font1;
@@ -45,6 +44,60 @@
       justify-content: flex-start;
       overflow-x: scroll;
       padding-bottom: 7px;
+    }
+  }
+}
+
+.image-to-video-image-upload {
+  .image-to-video-image-upload-label {
+    color: $colour1;
+    font-family: $font1;
+    font-size: 21px;
+  }
+  .image-to-video-image-upload-container {
+    display: flex;
+    gap: 7px;
+    justify-content: space-between;
+    .image-to-video-image-upload-input,
+    .image-to-video-image-preview {
+      aspect-ratio: 3/2;
+      border: 2px solid $colour4;
+      cursor: pointer;
+      overflow-y: hidden;
+      width: 100%;
+    }
+    .image-to-video-image-upload-input {
+      label {
+        * {
+          color: $colour3;
+          cursor: pointer;
+          font-size: 28px;
+          margin-top: 28px;
+
+          transition: color 0.3s ease-in-out;
+        }
+      }
+      input {
+        display: none;
+      }
+
+      &:hover {
+        label {
+          * {
+            color: $colour5;
+          }
+        }
+      }
+    }
+    .image-to-video-image-preview {
+      .image-to-video-image-preview-text {
+        color: $colour5;
+        font-family: $font1;
+        padding-top: 7px;
+      }
+      .image-to-video-image-preview-image {
+        width: 100%;
+      }
     }
   }
 }

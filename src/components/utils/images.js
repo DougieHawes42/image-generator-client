@@ -10,16 +10,23 @@ import "./style.scss";
 // media
 import loadingImage from "../../media/loading.svg";
 
-export const GalleryImage = ({ onClick, src, alt }) => {
+export const GalleryImage = ({ isVideo, onClick, src, alt }) => {
   const [liked, setLiked] = useState(false);
+
+  const imageSrc = src?.src ?? src;
 
   return (
     <div className="gallery-image-container">
-      <img
-        className="gallery-image"
-        src={`data:image/png;base64,${src}`}
-        alt={alt}
-      />
+      {isVideo ? (
+        <video className="gallery-image" src={imageSrc} />
+      ) : (
+        <img
+          className="gallery-image"
+          src={`data:image/png;base64,${imageSrc}`}
+          alt={alt}
+        />
+      )}
+
       <div className="gallery-image-buttons" onClick={onClick}>
         <div
           className={`gallery-image-like ${liked ? "liked" : ""}`}
@@ -28,9 +35,11 @@ export const GalleryImage = ({ onClick, src, alt }) => {
           }}>
           <CiHeart />
         </div>
+
         <div className="gallery-image-delete">
           <RiDeleteBin6Line />
         </div>
+
         <div className="gallery-image-download">
           <MdOutlineFileDownload />
         </div>
@@ -49,7 +58,6 @@ export const GalleryImageLoading = () => (
 export const ExampleImage = ({ file, index }) => (
   <img
     className="example-image"
-    key={`${file.name}-${index}`}
     src={URL.createObjectURL(file)}
     alt={`Selected reference ${index + 1}`}
   />

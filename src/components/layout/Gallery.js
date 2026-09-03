@@ -33,6 +33,7 @@ const Gallery = ({ controller }) => {
                 }}
                 key={index}
                 src={image}
+                isVideo={image?.src?.includes(".mp4")}
               />
             ))}
           </div>

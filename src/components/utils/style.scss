@@ -28,9 +28,9 @@
       min-height: 140px;
     }
     .generate-route-options-selectors {
-      display: grid;
-      grid-gap: 7px;
-      grid-template-columns: 1fr 1fr 1fr;
+      display: flex;
+      gap: 7px;
+      justify-content: space-between;
       width: 100%;
     }
   }

@@ -37,7 +37,10 @@ const App = () => {
           path="/images-to-blended-image"
           element={<ImagesToBlendedImage />}
         />
-        <Route path="/image-to-video" element={<ImageToVideo />} />
+        <Route
+          path="/image-to-video"
+          element={<ImageToVideo controller={controller} />}
+        />
       </Routes>
       <Gallery controller={controller} />
       <Navbar />
