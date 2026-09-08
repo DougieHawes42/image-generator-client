@@ -6,39 +6,41 @@ import "./style.scss";
 
 // components
 // utils
-import { GalleryImage } from "../utils/images.js";
-// import { GalleryImageLoading } from "../utils/images.js";
-
+import { GalleryImage, GalleryImageLoading } from "../utils/images.js";
 const Gallery = ({ controller }) => {
+  const { images, loading, setShowModal, setSelectedImageIndex } = controller;
+
   return (
     <div className="gallery">
       <div className="gallery-header">
         <h3 className="gallery-title">gallery</h3>
-        <p className="gallery-subtitle">choose items to save and download</p>
+        {images.length > 0 && (
+          <p className="gallery-subtitle">choose items to save and download</p>
+        )}
       </div>
-      {controller.images.length === 0 ? (
+      {images.length === 0 && !loading && (
         <div className="gallery-empty">
           <GiPaintBucket className="bucket" />
           <GiPaintRoller className="roller" />
           <p className="gallery-empty-text">No images to display</p>
         </div>
-      ) : (
-        controller.images.length > 0 && (
-          <div className="gallery-images">
-            {controller.images.map((image, index) => (
-              <GalleryImage
-                onClick={() => {
-                  controller.setShowModal(true);
-                  controller.setSelectedImageIndex(index);
-                }}
-                key={index}
-                src={image}
-                isVideo={image?.src?.includes(".mp4")}
-              />
-            ))}
-          </div>
-        )
       )}
+      <div className="gallery-images">
+        {loading && <GalleryImageLoading />}
+        {images.length > 0 &&
+          [...images].reverse().map((image, index) => (
+            <GalleryImage
+              onClick={() => {
+                setShowModal(true);
+                setSelectedImageIndex(images.length - 1 - index);
+              }}
+              controller={controller}
+              key={index}
+              src={image}
+              isVideo={image?.src?.includes(".mp4")}
+            />
+          ))}
+      </div>
     </div>
   );
 };

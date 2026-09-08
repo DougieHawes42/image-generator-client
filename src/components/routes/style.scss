@@ -44,6 +44,27 @@
       justify-content: flex-start;
       overflow-x: scroll;
       padding-bottom: 7px;
+      .images-to-image-preview-image {
+        position: relative;
+        .images-to-image-preview-image-delete-button {
+          background-color: none;
+          border: none;
+          color: $colour5;
+          font-size: 21px;
+          right: 14px;
+          position: absolute;
+          bottom: 7px;
+          cursor: pointer;
+
+          opacity: 0;
+          transition: opacity 0.3s ease-in-out;
+        }
+        &:hover {
+          .images-to-image-preview-image-delete-button {
+            opacity: 1;
+          }
+        }
+      }
     }
   }
 }
@@ -58,13 +79,51 @@
     display: flex;
     gap: 7px;
     justify-content: space-between;
-    .image-to-video-image-upload-input,
-    .image-to-video-image-preview {
+    .image-to-video-image-upload-input {
       aspect-ratio: 3/2;
       border: 2px solid $colour4;
       cursor: pointer;
       overflow-y: hidden;
+      position: relative;
       width: 100%;
+      .image-to-video-image-upload-input-title {
+        color: $colour1;
+        font-family: $font1;
+        font-size: 21px;
+        padding: 7px 14px;
+        position: absolute;
+        top: 0;
+      }
+      .image-to-video-image-upload-input-title.end {
+        right: 0;
+      }
+      .image-to-video-image-upload-input-text {
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        .image-to-video-image-preview-text {
+          color: $colour5;
+          font-family: $font1;
+          padding-top: 7px;
+        }
+      }
+      .image-to-video-image-upload-input-text.hidden {
+        opacity: 0;
+
+        transition: opacity 0.3s ease-in-out;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+      .image-to-video-image-preview-image {
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+      }
     }
     .image-to-video-image-upload-input {
       label {
@@ -90,11 +149,6 @@
       }
     }
     .image-to-video-image-preview {
-      .image-to-video-image-preview-text {
-        color: $colour5;
-        font-family: $font1;
-        padding-top: 7px;
-      }
       .image-to-video-image-preview-image {
         width: 100%;
       }

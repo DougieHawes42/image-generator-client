@@ -9,10 +9,11 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import "./style.scss";
 
 const ImageModal = ({ controller }) => {
-  const selectedImage = controller.images[controller.selectedImageIndex]?.src;
+  const selectedImage = controller.images[controller.selectedImageIndex];
 
-  const isVideo =
-    typeof selectedImage === "string" && selectedImage.includes(".mp4");
+  const isVideo = typeof selectedImage !== "string";
+
+  const reversedImages = [...controller.images].reverse();
 
   return (
     <div
@@ -23,7 +24,7 @@ const ImageModal = ({ controller }) => {
           {isVideo ? (
             <video
               className="image-modal-image"
-              src={selectedImage}
+              src={selectedImage.src}
               controls
               autoPlay
             />
@@ -35,35 +36,36 @@ const ImageModal = ({ controller }) => {
             />
           )}
           <div className="image-modal-buttons">
-            <RiDeleteBin6Line className="image-modal-button delete" />
             <FaChevronLeft
               className="image-modal-button left"
               onClick={() =>
                 controller.setSelectedImageIndex(
-                  (controller.selectedImageIndex -
-                    1 +
-                    controller.images.length) %
-                    controller.images.length,
+                  (controller.selectedImageIndex + 1) % reversedImages.length,
                 )
               }
             />
+
             <CiHeart className="image-modal-button like" />
+
             <div className="image-modal-button number">
-              {controller.selectedImageIndex + 1} / {controller.images.length}
+              {controller.selectedImageIndex + 1} / {reversedImages.length}
             </div>
+
             <MdOutlineFileDownload
               className="image-modal-button download"
-              onClick={() => controller.handleDownload()}
+              onClick={controller.handleDownload}
             />
+
             <FaChevronRight
               className="image-modal-button right"
               onClick={() =>
                 controller.setSelectedImageIndex(
-                  (controller.selectedImageIndex + 1) %
-                    controller.images.length,
+                  (controller.selectedImageIndex - 1 + reversedImages.length) %
+                    reversedImages.length,
                 )
               }
             />
+
             <FaTimes
               className="image-modal-button close"
               onClick={() => controller.setShowModal(false)}

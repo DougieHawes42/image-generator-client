@@ -1,5 +1,4 @@
-// dependencies
-import { useState } from "react";
+import controllers from "../../controllers/index.js";
 
 // styles
 import "./style.scss";
@@ -9,18 +8,17 @@ import "./style.scss";
 import { GenerateRoute } from "../utils/routes.js";
 
 const ImagesToBlendedImage = () => {
-  const [value, setValue] = useState("");
+  const controller = controllers();
 
   return (
     <GenerateRoute
       title="Images to Blended Image"
       subtitle="Enter {an image/some images} plus an image to blend them with to generate a new image"
       name="prompt"
-      value={value}
-      onChange={(e) => setValue(e.target.value)}
+      value={controller.promptText}
+      onChange={(e) => controller.setPromptText(e.target.value)}
       placeholder="Type your prompt here..."
       buttonText="Generate"
-      resetVisible={value.length > 0}
     />
   );
 };

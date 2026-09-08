@@ -1,6 +1,8 @@
 // styles
 import "./style.scss";
 
+import controllers from "../../controllers/index.js";
+
 // components
 // utils
 import { PromptInput, PromptOptionsSelector } from "./inputs.js";
@@ -14,8 +16,8 @@ export const GenerateRoute = ({
   onChange,
   placeholder,
   buttonText,
-  resetVisible,
-  onClickReset,
+  showReset,
+  onReset,
   onSubmit,
 
   size,
@@ -92,8 +94,8 @@ export const GenerateRoute = ({
       </div>
       <div className="generate-route-submit-container">
         <SubmitButton onClick={onSubmit} text={buttonText} />
-        {resetVisible && (
-          <div className="generate-route-reset-button" onClick={onClickReset}>
+        {showReset && (
+          <div className="generate-route-reset-button" onClick={onReset}>
             RESET
           </div>
         )}

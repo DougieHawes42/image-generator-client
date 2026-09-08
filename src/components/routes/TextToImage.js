@@ -24,13 +24,11 @@ const TextToImage = ({ controller }) => {
       subtitle="Type in a prompt for the image you wish to generate"
       name="prompt"
       value={promptText}
-      onChange={(e) => setPromptText(e.target.value)}
       placeholder="Type your prompt here..."
       buttonText="Generate"
-      resetVisible={promptText.length > 0}
-      onClickReset={() => setPromptText("")}
       onSubmit={handleTextToImageSubmit}
       size={size}
+      onChange={(e) => setPromptText(e.target.value)}
       setSize={setSize}
       quality={quality}
       setQuality={setQuality}

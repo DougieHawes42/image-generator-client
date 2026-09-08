@@ -170,7 +170,6 @@
             color: $colour4;
           }
         }
-        .image-modal-button.delete,
         .image-modal-button.like,
         .image-modal-button.number,
         .image-modal-button.download,
@@ -180,11 +179,8 @@
           position: absolute;
           top: 7px;
         }
-        .image-modal-button.delete {
-          left: 7px;
-        }
         .image-modal-button.like {
-          left: 120px;
+          left: 60px;
         }
         .image-modal-button.number {
           left: 50%;
@@ -197,7 +193,7 @@
           right: 7px;
         }
         .image-modal-button.left {
-          left: 70px;
+          left: 7px;
         }
         .image-modal-button.right {
           right: 70px;

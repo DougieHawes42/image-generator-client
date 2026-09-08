@@ -111,23 +111,26 @@
   }
 }
 
+.gallery-image-loader {
+  border: 2px solid $colour4;
+  height: 120px;
+  position: relative;
+  width: 90px;
+  .gallery-image-loader-icon {
+    height: 70px;
+    width: auto;
+  }
+  .gallery-image-loader-text {
+    color: $colour5;
+    font-family: $font1;
+    font-size: 14px;
+    margin-top: 7px;
+  }
+}
+
 .gallery-image-container {
   cursor: pointer;
   position: relative;
-  .gallery-loader {
-    left: 14px;
-    position: absolute;
-    top: 0;
-    width: 70px;
-  }
-  .gallery-loader-text {
-    left: 28px;
-    top: 60px;
-    position: absolute;
-    font-family: $font1;
-    font-size: 14px;
-    color: $colour4;
-  }
   .gallery-image {
     height: 120px;
     width: auto;

@@ -1,6 +1,6 @@
 // dependencies
-import { useState } from "react";
 import { FaPlusCircle } from "react-icons/fa";
+import { RiDeleteBinLine } from "react-icons/ri";
 
 // styles
 import "./style.scss";
@@ -16,7 +16,7 @@ const ImagesToImage = ({ controller }) => {
   const imageUpload = (
     <div className="images-to-image-image-upload">
       <label className="images-to-image-image-upload-label">
-        Upload Images
+        Upload Image/s
       </label>
       <div className="images-to-image-image-upload-container">
         <div className="images-to-image-image-upload-input">
@@ -39,6 +39,16 @@ const ImagesToImage = ({ controller }) => {
               className="images-to-image-preview-image"
               key={`${image.name}-${index}`}>
               <ExampleImage file={image} index={index} />
+              <div
+                className="images-to-image-preview-image-delete-button"
+                type="button"
+                onClick={() => {
+                  controller.setImagesToImageFiles((previousFiles) =>
+                    previousFiles.filter((_, i) => i !== index),
+                  );
+                }}>
+                <RiDeleteBinLine />
+              </div>
             </div>
           ))}
         </div>
@@ -56,10 +66,6 @@ const ImagesToImage = ({ controller }) => {
       onChange={(e) => controller.setPromptText(e.target.value)}
       placeholder="Type your prompt here..."
       buttonText="Generate"
-      resetVisible={
-        controller.promptText.length > 0 || imagesToImageFiles.length > 0
-      }
-      onClickReset={() => controller.setPromptText("")}
       onSubmit={controller.handleImagesToImageSubmit}
       size={controller.size}
       quality={controller.quality || "medium"}
@@ -67,6 +73,14 @@ const ImagesToImage = ({ controller }) => {
       setSize={controller.setSize}
       setQuality={controller.setQuality}
       setQuantity={controller.setQuantity}
+      showReset={
+        controller.imagesToImageFiles.length > 0 ||
+        controller.promptText.length > 0
+      }
+      onReset={() => {
+        controller.setPromptText("");
+        controller.setImagesToImageFiles([]);
+      }}
     />
   );
 };

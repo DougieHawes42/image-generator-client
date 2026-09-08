@@ -161,11 +161,13 @@ const controllers = () => {
   const handleDownload = async () => {
     if (selectedImageIndex === null) return;
 
-    const src = images[selectedImageIndex]?.src;
+    const item = images[selectedImageIndex];
+
+    const src = typeof item === "string" ? item : item?.src;
 
     if (!src) return;
 
-    if (src.includes(".mp4")) {
+    if (typeof item !== "string") {
       const response = await fetch(src);
       const blob = await response.blob();
 
@@ -237,6 +239,10 @@ const controllers = () => {
 
     selectedImageIndex,
     setSelectedImageIndex,
+
+    setImagesToImageFiles,
+    setImageToVideoStartFile,
+    setImageToVideoEndFile,
   };
 };
 
