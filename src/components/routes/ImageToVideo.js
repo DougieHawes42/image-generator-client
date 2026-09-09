@@ -78,7 +78,10 @@ const ImageToVideo = ({ controller }) => {
       title="Image to Video"
       subtitle="Enter an image and a prompt to generate a video"
       name="prompt"
-      onChange={(e) => controller.setPromptText(e.target.value)}
+      onChange={(e) => {
+        setPromptText(e.target.value);
+        setPromptImproved(false);
+      }}
       placeholder="Type your prompt here..."
       buttonText="Generate"
       value={controller.promptText}
@@ -90,6 +93,7 @@ const ImageToVideo = ({ controller }) => {
       showSize={false}
       showQuality={false}
       showQuantity={false}
+      onImprovePrompt={controller.handleImprovePrompt}
     />
   );
 };

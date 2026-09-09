@@ -23,6 +23,18 @@
   }
   .generate-route-inputs {
     width: 100%;
+    .generate-route-prompt-improve {
+      color: $colour5;
+      cursor: pointer;
+      font-family: $font1;
+      font-size: 21px;
+      margin-bottom: 7px;
+      text-align: right;
+      transition: color 0.3s ease;
+      &:hover {
+        color: $colour4;
+      }
+    }
     .generate-route-image-upload-container {
       margin-bottom: 7px;
       min-height: 140px;
@@ -51,15 +63,25 @@
   }
 }
 
-.prompt-input {
-  background-color: $colour3;
-  border: 2px solid $colour4;
-  color: $colour1;
-  font-size: 18px;
-  min-height: 210px;
-  padding: 7px;
-  text-align: left;
-  width: 100%;
+.prompt-input-container {
+  position: relative;
+  .prompt-input {
+    background-color: $colour3;
+    border: 2px solid $colour4;
+    color: $colour1;
+    font-size: 18px;
+    min-height: 210px;
+    padding: 7px;
+    text-align: left;
+    width: 100%;
+  }
+  .prompt-input-loading {
+    position: absolute;
+    bottom: 7px;
+    top: 7px;
+    color: $colour5;
+    font-size: 21px;
+  }
 }
 
 .prompt-options-selector-container {

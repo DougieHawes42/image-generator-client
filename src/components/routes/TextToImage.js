@@ -16,6 +16,7 @@ const TextToImage = ({ controller }) => {
     setQuality,
     quantity,
     setQuantity,
+    setPromptImproved,
   } = controller;
 
   return (
@@ -28,12 +29,18 @@ const TextToImage = ({ controller }) => {
       buttonText="Generate"
       onSubmit={handleTextToImageSubmit}
       size={size}
-      onChange={(e) => setPromptText(e.target.value)}
+      onChange={(e) => {
+        setPromptText(e.target.value);
+      }}
+      onKeyDown={() => {
+        setPromptImproved(false);
+      }}
       setSize={setSize}
       quality={quality}
       setQuality={setQuality}
       quantity={quantity}
       setQuantity={setQuantity}
+      onImprovePrompt={controller.handleImprovePrompt}
     />
   );
 };

@@ -4,6 +4,7 @@ import axios from "axios";
 
 const controllers = () => {
   const [promptText, setPromptText] = useState("");
+  const [originalPromptText, setOriginalPromptText] = useState("");
   const [size, setSize] = useState("1024x1024");
   const [quality, setQuality] = useState("low");
   const [quantity, setQuantity] = useState(4);
@@ -16,10 +17,40 @@ const controllers = () => {
 
   const [disabled, setDisabled] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [improvePromptLoading, setImprovePromptLoading] = useState(false);
+  const [promptImproved, setPromptImproved] = useState(false);
   const [error, setError] = useState(null);
 
   const [showModal, setShowModal] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(null);
+
+  const handleImprovePrompt = async () => {
+    if (!promptText.trim()) {
+      return;
+    }
+    if (promptImproved) {
+      setOriginalPromptText(promptText);
+    }
+
+    setImprovePromptLoading(true);
+    setError("");
+
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_URL}/api/image/improve`,
+        {
+          prompt: promptText,
+        },
+      );
+
+      setPromptText(response.data.prompt);
+      setPromptImproved(true);
+    } catch (error) {
+      console.error("Prompt improvement failed:", error);
+    } finally {
+      setImprovePromptLoading(false);
+    }
+  };
 
   const handleImagesToImageChange = (e) => {
     const files = Array.from(e.target.files);
@@ -213,6 +244,11 @@ const controllers = () => {
     loading,
     setLoading,
 
+    improvePromptLoading,
+    setImprovePromptLoading,
+    promptImproved,
+    setPromptImproved,
+
     error,
     setError,
 
@@ -221,12 +257,16 @@ const controllers = () => {
 
     promptText,
     setPromptText,
+    originalPromptText,
+    setOriginalPromptText,
     size,
     setSize,
     quality,
     setQuality,
     quantity,
     setQuantity,
+
+    handleImprovePrompt,
 
     handleDownload,
 

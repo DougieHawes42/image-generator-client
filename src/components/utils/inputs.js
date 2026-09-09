@@ -1,15 +1,28 @@
 // styles
 import "./style.scss";
 
-export const PromptInput = ({ name, value, onChange, placeholder }) => {
+export const PromptInput = ({
+  name,
+  value,
+  onChange,
+  placeholder,
+  improvePromptLoading,
+  onKeyDown,
+}) => {
   return (
-    <textarea
-      className="prompt-input"
-      name={name}
-      value={value}
-      onChange={onChange}
-      placeholder={placeholder}
-    />
+    <div className="prompt-input-container">
+      <textarea
+        className="prompt-input"
+        name={name}
+        value={value}
+        onChange={onChange}
+        onKeyDown={onKeyDown}
+        placeholder={placeholder}
+      />
+      {improvePromptLoading && (
+        <div className="prompt-input-loading">Loading...</div>
+      )}
+    </div>
   );
 };
 

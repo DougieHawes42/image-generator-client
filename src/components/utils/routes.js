@@ -19,6 +19,10 @@ export const GenerateRoute = ({
   showReset,
   onReset,
   onSubmit,
+  onImprovePrompt,
+  improvePromptLoading,
+  promptImproved,
+  onKeyDown,
 
   size,
   setSize,
@@ -44,8 +48,23 @@ export const GenerateRoute = ({
           name={name}
           value={value}
           onChange={onChange}
+          onKeyDown={onKeyDown}
           placeholder={placeholder}
+          improvePromptLoading={improvePromptLoading}
         />
+        {promptImproved ? (
+          <div
+            className="generate-route-prompt-improve"
+            onClick={onImprovePrompt}>
+            REFRESH PROMPT
+          </div>
+        ) : (
+          <div
+            className="generate-route-prompt-improve"
+            onClick={onImprovePrompt}>
+            IMPROVE PROMPT
+          </div>
+        )}
         {imageUpload && (
           <div className="generate-route-image-upload-container">
             {imageUpload}

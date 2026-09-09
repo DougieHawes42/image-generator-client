@@ -63,7 +63,10 @@ const ImagesToImage = ({ controller }) => {
       subtitle="Enter a prompt and one or more images to generate a new image"
       name="prompt"
       value={controller.promptText}
-      onChange={(e) => controller.setPromptText(e.target.value)}
+      onChange={(e) => {
+        controller.setPromptText(e.target.value);
+        controller.setPromptImproved(false);
+      }}
       placeholder="Type your prompt here..."
       buttonText="Generate"
       onSubmit={controller.handleImagesToImageSubmit}
@@ -81,6 +84,7 @@ const ImagesToImage = ({ controller }) => {
         controller.setPromptText("");
         controller.setImagesToImageFiles([]);
       }}
+      onImprovePrompt={controller.handleImprovePrompt}
     />
   );
 };
