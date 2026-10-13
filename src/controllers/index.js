@@ -5,6 +5,10 @@ import axios from "axios";
 const controllers = () => {
   const [promptText, setPromptText] = useState("");
   const [originalPromptText, setOriginalPromptText] = useState("");
+
+  const [showThemeSelector, setShowThemeSelector] = useState(false);
+
+  const [theme, setTheme] = useState("none");
   const [size, setSize] = useState("1024x1024");
   const [quality, setQuality] = useState("low");
   const [quantity, setQuantity] = useState(4);
@@ -89,6 +93,7 @@ const controllers = () => {
         `${process.env.REACT_APP_API_URL}/api/image/submit`,
         {
           prompt: promptText,
+          theme,
           size,
           quality,
           quantity,
@@ -230,7 +235,10 @@ const controllers = () => {
   return {
     setQuality,
     setQuantity,
-
+    showThemeSelector,
+    setShowThemeSelector,
+    theme,
+    setTheme,
     images,
     setImages,
 

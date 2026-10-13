@@ -22,19 +22,8 @@
     }
   }
   .generate-route-inputs {
+    margin-bottom: 7px;
     width: 100%;
-    .generate-route-prompt-improve {
-      color: $colour5;
-      cursor: pointer;
-      font-family: $font1;
-      font-size: 21px;
-      margin-bottom: 7px;
-      text-align: right;
-      transition: color 0.3s ease;
-      &:hover {
-        color: $colour4;
-      }
-    }
     .generate-route-image-upload-container {
       margin-bottom: 7px;
       min-height: 140px;
@@ -44,6 +33,36 @@
       gap: 7px;
       justify-content: space-between;
       width: 100%;
+    }
+    .generate-route-theme-selector-container {
+      display: grid;
+      grid-template-columns: 60px 200px 1fr;
+      gap: 7px;
+      margin-bottom: 7px;
+      width: 100%;
+      .generate-route-theme-title {
+        color: $colour1;
+        font-family: $font1;
+        font-size: 21px;
+      }
+      .generate-route-theme-value {
+        color: $colour4;
+        font-family: $font2;
+        font-size: 18px;
+        text-align: left;
+      }
+      .generate-route-theme-select {
+        color: $colour4;
+        font-family: $font1;
+        font-size: 21px;
+        cursor: pointer;
+        text-align: right;
+
+        transition: color 0.3s ease;
+        &:hover {
+          color: $colour5;
+        }
+      }
     }
   }
   .generate-route-submit-container {
@@ -75,12 +94,19 @@
     text-align: left;
     width: 100%;
   }
-  .prompt-input-loading {
+  .prompt-input-improve {
+    font-family: $font1;
     position: absolute;
     bottom: 7px;
-    top: 7px;
+    right: 7px;
     color: $colour5;
     font-size: 21px;
+    cursor: pointer;
+
+    transition: color 0.3s ease;
+    &:hover {
+      color: $colour4;
+    }
   }
 }
 
@@ -230,4 +256,66 @@
   height: 120px;
   margin-right: 7px;
   width: auto;
+}
+
+.theme-selector {
+  border: 2px solid $colour4;
+  background-color: $colour2;
+  left: 50%;
+  max-width: 900px;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding-top: 7px;
+  position: absolute;
+  width: 100%;
+
+  z-index: 1000;
+  .theme-selector-title {
+    color: $colour4;
+    font-family: $font1;
+    font-size: 24px;
+    text-align: center;
+  }
+  .theme-options-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    max-height: 70vh;
+    overflow-y: scroll;
+    padding: 10px;
+    .theme-option {
+      aspect-ratio: 1 / 1;
+      border: 2px solid $colour5;
+      cursor: pointer;
+      text-align: center;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      .theme-option-name {
+        background-color: rgba(0, 0, 0, 0.42);
+        color: $colour4;
+        font-size: 28px;
+        margin-top: 5px;
+        font-family: $font1;
+        position: absolute;
+        bottom: 5px;
+        width: 100%;
+      }
+      &:hover {
+        border-color: $colour4;
+      }
+    }
+  }
+  .theme-selector-close {
+    color: $colour4;
+    font-size: 42px;
+    text-align: center;
+    cursor: pointer;
+    font-family: $font1;
+    margin: 7px;
+
+    &:hover {
+      color: $colour5;
+    }
+  }
 }

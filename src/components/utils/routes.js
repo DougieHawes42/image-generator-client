@@ -1,10 +1,9 @@
 // styles
 import "./style.scss";
 
-import controllers from "../../controllers/index.js";
-
 // components
 // utils
+import { ThemeSelector } from "./inputs.js";
 import { PromptInput, PromptOptionsSelector } from "./inputs.js";
 import { SubmitButton } from "./buttons.js";
 
@@ -12,6 +11,8 @@ export const GenerateRoute = ({
   title,
   subtitle,
   name,
+  showThemeSelector,
+  setShowThemeSelector,
   value,
   onChange,
   placeholder,
@@ -21,9 +22,10 @@ export const GenerateRoute = ({
   onSubmit,
   onImprovePrompt,
   improvePromptLoading,
-  promptImproved,
   onKeyDown,
 
+  theme,
+  setTheme,
   size,
   setSize,
   quality,
@@ -50,21 +52,9 @@ export const GenerateRoute = ({
           onChange={onChange}
           onKeyDown={onKeyDown}
           placeholder={placeholder}
+          improvePrompt={onImprovePrompt}
           improvePromptLoading={improvePromptLoading}
         />
-        {promptImproved ? (
-          <div
-            className="generate-route-prompt-improve"
-            onClick={onImprovePrompt}>
-            REFRESH PROMPT
-          </div>
-        ) : (
-          <div
-            className="generate-route-prompt-improve"
-            onClick={onImprovePrompt}>
-            IMPROVE PROMPT
-          </div>
-        )}
         {imageUpload && (
           <div className="generate-route-image-upload-container">
             {imageUpload}
@@ -110,6 +100,17 @@ export const GenerateRoute = ({
             />
           )}
         </div>
+        <div className="generate-route-theme-selector-container">
+          <div className="generate-route-theme-title">THEME -</div>
+          <div className="generate-route-theme-value">
+            {theme ? theme : "None"}
+          </div>
+          <div
+            className="generate-route-theme-select"
+            onClick={() => setShowThemeSelector(!showThemeSelector)}>
+            SELECT
+          </div>
+        </div>
       </div>
       <div className="generate-route-submit-container">
         <SubmitButton onClick={onSubmit} text={buttonText} />
@@ -119,6 +120,13 @@ export const GenerateRoute = ({
           </div>
         )}
       </div>
+      {showThemeSelector && (
+        <ThemeSelector
+          onClose={() => setShowThemeSelector(false)}
+          theme={theme}
+          onSelectTheme={setTheme}
+        />
+      )}
     </div>
   );
 };

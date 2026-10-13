@@ -10,6 +10,8 @@ const TextToImage = ({ controller }) => {
     promptText,
     setPromptText,
     handleTextToImageSubmit,
+    theme,
+    setTheme,
     size,
     setSize,
     quality,
@@ -17,6 +19,7 @@ const TextToImage = ({ controller }) => {
     quantity,
     setQuantity,
     setPromptImproved,
+    setShowThemeSelector,
   } = controller;
 
   return (
@@ -32,6 +35,8 @@ const TextToImage = ({ controller }) => {
       onChange={(e) => {
         setPromptText(e.target.value);
       }}
+      theme={theme}
+      setTheme={setTheme}
       onKeyDown={() => {
         setPromptImproved(false);
       }}
@@ -41,6 +46,8 @@ const TextToImage = ({ controller }) => {
       quantity={quantity}
       setQuantity={setQuantity}
       onImprovePrompt={controller.handleImprovePrompt}
+      showThemeSelector={controller.showThemeSelector}
+      setShowThemeSelector={setShowThemeSelector}
     />
   );
 };
