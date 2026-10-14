@@ -3,7 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 
 const controllers = () => {
-  const [promptText, setPromptText] = useState("deadpool washing the car");
+  const [promptText, setPromptText] = useState("");
   const [originalPromptText, setOriginalPromptText] = useState("");
 
   const [showThemeSelector, setShowThemeSelector] = useState(false);
