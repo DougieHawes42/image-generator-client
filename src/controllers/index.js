@@ -3,12 +3,12 @@ import { useState } from "react";
 import axios from "axios";
 
 const controllers = () => {
-  const [promptText, setPromptText] = useState("");
+  const [promptText, setPromptText] = useState("deadpool washing the car");
   const [originalPromptText, setOriginalPromptText] = useState("");
 
   const [showThemeSelector, setShowThemeSelector] = useState(false);
 
-  const [theme, setTheme] = useState("none");
+  const [theme, setTheme] = useState("NONE");
   const [size, setSize] = useState("1024x1024");
   const [quality, setQuality] = useState("low");
   const [quantity, setQuantity] = useState(4);
@@ -121,6 +121,17 @@ const controllers = () => {
   const handleImagesToImageSubmit = async (e) => {
     e.preventDefault();
 
+    const hasImages = imagesToImageFiles.length > 0;
+    const hasPrompt = promptText.trim().length > 0;
+    const hasTheme = theme && theme !== "NONE";
+
+    if (!hasImages || (!hasPrompt && !hasTheme)) {
+      setError(
+        "Please upload an image and provide a prompt or select a theme.",
+      );
+      return;
+    }
+
     const formData = new FormData();
 
     imagesToImageFiles.forEach((image) => {
@@ -128,6 +139,7 @@ const controllers = () => {
     });
 
     formData.append("prompt", promptText);
+    formData.append("theme", theme);
     formData.append("size", size);
     formData.append("quality", quality);
     formData.append("quantity", String(quantity));
@@ -295,3 +307,4 @@ const controllers = () => {
 };
 
 export default controllers;
+console;

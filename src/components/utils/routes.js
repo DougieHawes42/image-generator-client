@@ -124,7 +124,7 @@ export const GenerateRoute = ({
         <ThemeSelector
           onClose={() => setShowThemeSelector(false)}
           theme={theme}
-          onSelectTheme={setTheme}
+          setTheme={setTheme}
         />
       )}
     </div>

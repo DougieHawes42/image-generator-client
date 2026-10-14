@@ -11,7 +11,25 @@ import { GenerateRoute } from "../utils/routes.js";
 import { ExampleImage } from "../utils/images.js";
 
 const ImagesToImage = ({ controller }) => {
-  const { imagesToImageFiles } = controller;
+  const {
+    imagesToImageFiles,
+    promptText,
+    setPromptText,
+    setPromptImproved,
+    handleImagesToImageSubmit,
+    theme,
+    setTheme,
+    showThemeSelector,
+    size,
+    quality,
+    quantity,
+    setSize,
+    setQuality,
+    setQuantity,
+    handleImprovePrompt,
+    setShowThemeSelector,
+    setImagesToImageFiles,
+  } = controller;
 
   const imageUpload = (
     <div className="images-to-image-image-upload">
@@ -61,30 +79,31 @@ const ImagesToImage = ({ controller }) => {
       imageUpload={imageUpload}
       title="Images to Image"
       subtitle="Enter a prompt and one or more images to generate a new image"
-      name="prompt"
-      value={controller.promptText}
+      name="promptText"
+      value={promptText}
       onChange={(e) => {
-        controller.setPromptText(e.target.value);
-        controller.setPromptImproved(false);
+        setPromptText(e.target.value);
+        setPromptImproved(false);
       }}
       placeholder="Type your prompt here..."
       buttonText="Generate"
-      onSubmit={controller.handleImagesToImageSubmit}
-      size={controller.size}
-      quality={controller.quality || "medium"}
-      quantity={controller.quantity}
-      setSize={controller.setSize}
-      setQuality={controller.setQuality}
-      setQuantity={controller.setQuantity}
-      showReset={
-        controller.imagesToImageFiles.length > 0 ||
-        controller.promptText.length > 0
-      }
+      onSubmit={handleImagesToImageSubmit}
+      size={size}
+      quality={quality || "medium"}
+      quantity={quantity}
+      setSize={setSize}
+      setQuality={setQuality}
+      setQuantity={setQuantity}
+      showReset={imagesToImageFiles.length > 0 || promptText.length > 0}
       onReset={() => {
-        controller.setPromptText("");
-        controller.setImagesToImageFiles([]);
+        setPromptText("");
+        setImagesToImageFiles([]);
       }}
-      onImprovePrompt={controller.handleImprovePrompt}
+      onImprovePrompt={handleImprovePrompt}
+      theme={theme}
+      setTheme={setTheme}
+      showThemeSelector={showThemeSelector}
+      setShowThemeSelector={setShowThemeSelector}
     />
   );
 };

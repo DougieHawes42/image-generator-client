@@ -20,6 +20,8 @@ const TextToImage = ({ controller }) => {
     setQuantity,
     setPromptImproved,
     setShowThemeSelector,
+    handleImprovePrompt,
+    showThemeSelector,
   } = controller;
 
   return (
@@ -45,8 +47,8 @@ const TextToImage = ({ controller }) => {
       setQuality={setQuality}
       quantity={quantity}
       setQuantity={setQuantity}
-      onImprovePrompt={controller.handleImprovePrompt}
-      showThemeSelector={controller.showThemeSelector}
+      onImprovePrompt={handleImprovePrompt}
+      showThemeSelector={showThemeSelector}
       setShowThemeSelector={setShowThemeSelector}
     />
   );
