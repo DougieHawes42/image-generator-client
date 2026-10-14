@@ -265,57 +265,76 @@
   max-width: 900px;
   top: 50%;
   transform: translate(-50%, -50%);
-  padding-top: 7px;
+  height: 800px;
+  overflow: hidden;
+  padding: 0 7px;
   position: absolute;
-  width: 100%;
+  width: 98%;
 
   z-index: 1000;
   .theme-selector-title {
     color: $colour4;
     font-family: $font1;
-    font-size: 24px;
+    font-size: 42px;
     text-align: center;
   }
-  .theme-options-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    max-height: 70vh;
+  .theme-options {
+    max-height: 690px;
+    overflow-x: hidden;
     overflow-y: scroll;
-    padding: 10px;
-    .theme-option {
-      aspect-ratio: 1 / 1;
-      border: 2px solid $colour5;
-      cursor: pointer;
-      text-align: center;
-      background-size: cover;
-      background-position: center;
-      position: relative;
-      .theme-option-name {
-        background-color: rgba(0, 0, 0, 0.42);
-        color: $colour5;
-        font-size: 28px;
-        margin-top: 5px;
+
+    .theme-option-category {
+      .theme-option-category-title {
         font-family: $font1;
-        position: absolute;
-        bottom: 5px;
-        width: 100%;
+        font-size: 24px;
+        color: $colour1;
       }
-      &:hover {
-        border-color: $colour4;
+      .theme-option-category-examples {
+        display: flex;
+        gap: 7px;
+        height: 150px;
+        padding-bottom: 7px;
+        width: 100%;
+        overflow-x: scroll;
+        .theme-option {
+          aspect-ratio: 1 / 1;
+          border: 2px solid $colour3;
+          cursor: pointer;
+          text-align: center;
+          background-size: cover;
+          max-width: 210px;
+          background-position: center;
+          position: relative;
+          &.selected {
+            border-color: $colour5;
+          }
+          .theme-option-name {
+            background-color: rgba(0, 0, 0, 0.42);
+            color: $colour5;
+            font-size: 21px;
+            margin-top: 5px;
+            font-family: $font1;
+            position: absolute;
+            bottom: 5px;
+            width: 100%;
+          }
+          &:hover {
+            border-color: $colour4;
+          }
+        }
       }
     }
   }
   .theme-selector-close {
-    color: $colour4;
-    font-size: 42px;
+    color: $colour5;
+    font-size: 28px;
     text-align: center;
     cursor: pointer;
     font-family: $font1;
     margin: 7px;
 
     &:hover {
-      color: $colour5;
+      color: $colour4;
     }
   }
 }

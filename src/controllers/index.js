@@ -10,7 +10,6 @@ const controllers = () => {
 
   const [theme, setTheme] = useState("NONE");
   const [size, setSize] = useState("1024x1024");
-  const [quality, setQuality] = useState("low");
   const [quantity, setQuantity] = useState(4);
 
   const [imagesToImageFiles, setImagesToImageFiles] = useState([]);
@@ -95,7 +94,7 @@ const controllers = () => {
           prompt: promptText,
           theme,
           size,
-          quality,
+          quality: "low",
           quantity,
           moderation: "low",
         },
@@ -141,7 +140,7 @@ const controllers = () => {
     formData.append("prompt", promptText);
     formData.append("theme", theme);
     formData.append("size", size);
-    formData.append("quality", quality);
+    formData.append("quality", "low");
     formData.append("quantity", String(quantity));
 
     try {
@@ -245,7 +244,6 @@ const controllers = () => {
   };
 
   return {
-    setQuality,
     setQuantity,
     showThemeSelector,
     setShowThemeSelector,
@@ -281,8 +279,6 @@ const controllers = () => {
     setOriginalPromptText,
     size,
     setSize,
-    quality,
-    setQuality,
     quantity,
     setQuantity,
 
@@ -307,4 +303,3 @@ const controllers = () => {
 };
 
 export default controllers;
-console;

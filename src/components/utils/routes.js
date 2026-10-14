@@ -28,15 +28,12 @@ export const GenerateRoute = ({
   setTheme,
   size,
   setSize,
-  quality,
-  setQuality,
   quantity,
   setQuantity,
 
   imageUpload,
 
   showSize = true,
-  showQuality = true,
   showQuantity = true,
 }) => {
   return (
@@ -70,18 +67,6 @@ export const GenerateRoute = ({
                 { key: 1, value: "1024x1024", text: "square" },
                 { key: 2, value: "1536x1024", text: "landscape" },
                 { key: 3, value: "1024x1536", text: "portrait" },
-              ]}
-            />
-          )}
-          {showQuality && (
-            <PromptOptionsSelector
-              value={quality}
-              onChange={(e) => setQuality(e.target.value)}
-              label="quality"
-              items={[
-                { key: 1, value: "low", text: "low" },
-                { key: 2, value: "medium", text: "medium" },
-                { key: 3, value: "high", text: "high" },
               ]}
             />
           )}
