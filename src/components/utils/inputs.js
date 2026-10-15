@@ -268,22 +268,6 @@ export const ThemeSelector = ({ onClose, setTheme, theme }) => {
           </div>
         </div>
         <div className="theme-option-category">
-          <h4 className="theme-option-category-title">Art</h4>
-          <div className="theme-option-category-examples">
-            {themeOptions
-              .filter(({ category }) => category === "art")
-              .map(({ key, text, image, value }) => (
-                <ThemeOption
-                  key={key}
-                  name={text}
-                  exampleImage={image}
-                  theme={theme}
-                  value={value}
-                />
-              ))}
-          </div>
-        </div>
-        <div className="theme-option-category">
           <h4 className="theme-option-category-title">Movie</h4>
           <div className="theme-option-category-examples">
             {themeOptions
@@ -300,10 +284,10 @@ export const ThemeSelector = ({ onClose, setTheme, theme }) => {
           </div>
         </div>
         <div className="theme-option-category">
-          <h4 className="theme-option-category-title">History</h4>
+          <h4 className="theme-option-category-title">Gaming</h4>
           <div className="theme-option-category-examples">
             {themeOptions
-              .filter(({ category }) => category === "history")
+              .filter(({ category }) => category === "game")
               .map(({ key, text, image, value }) => (
                 <ThemeOption
                   key={key}
@@ -316,10 +300,10 @@ export const ThemeSelector = ({ onClose, setTheme, theme }) => {
           </div>
         </div>
         <div className="theme-option-category">
-          <h4 className="theme-option-category-title">Fiction</h4>
+          <h4 className="theme-option-category-title">History</h4>
           <div className="theme-option-category-examples">
             {themeOptions
-              .filter(({ category }) => category === "fiction")
+              .filter(({ category }) => category === "history")
               .map(({ key, text, image, value }) => (
                 <ThemeOption
                   key={key}
